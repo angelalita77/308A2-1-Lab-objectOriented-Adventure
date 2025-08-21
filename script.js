@@ -110,8 +110,30 @@ class Companion extends Character {
         this.role = role;
         this.inventory.push("hat")
     }
+    //Adventurers have the ability to scout ahead of them
+        scout() {
+            return (`${this.name} is scouting ahead...`);
+            
+        }
+        roll(){
+            return super.roll();
+        }
+        attack(move){  // Added new ability to attack
+            if (move == "scratches" || move == "bites"){
+                return (`${this.name} ${move} foe...`);
+            } else {
+                return (`${this.name} cannot ${move}`)
+            }
+        }
     
 }
+
+const Leo01 = new Companion ("Leo", "pet");
+//console.log(Leo01);
+console.log(Leo01.roll());
+console.log(Leo01.scout());
+console.log(Leo01.attack("scratches"));
+console.log(Leo01.attack("slashes"));
 
 
 
