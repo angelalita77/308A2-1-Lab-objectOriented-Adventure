@@ -59,6 +59,7 @@ robin.companion.companion.inventory = ["small hat", "sunglasses"];
 const leo = robin.companion;
 const frank = robin.companion.companion;
 
+
 console.log(robin.roll());
 console.log(leo.roll());
 console.log(frank.roll());
@@ -71,16 +72,46 @@ class Adventurer extends Character {
         this.role = role;
         // Every adventurer starts with a bed and 50 gold coins
         this.inventory.push("bedroll", "50 gold coins");
-        super.roll()
+        
     }
         //Adventurers have the ability to scout ahead of them
         scout() {
-            return (`${$this.name} is scouting ahead...`);
+            return (`${this.name} is scouting ahead...`);
+            
         }
-        ;
+        roll(){
+            return super.roll();
+        }
+        attack(){  // Added new ability to attack
+            return (`${this.name} swings sword...`);
+        }
+        findItems(container){ //Add new ability to retreive items from chest or bag or whichever containment object found in game
+            for (let item of container){
+                this.inventory.push(item);
+            }
+            return `${this.name} finds the following items: \n ${container}`;
+        }
+        
 }
 
+let chest = ["shield", "dagger"]
+const Robin01 = new Adventurer ("Robin", "knight");
 
+console.log(Robin01);
+console.log(Robin01.roll());
+console.log(Robin01.scout());
+console.log(Robin01.attack());
+console.log(Robin01.findItems(chest));
+console.log(Robin01.inventory);
+
+class Companion extends Character {
+    constructor (name, role){
+        super(name);
+        this.role = role;
+        this.inventory.push("hat")
+    }
+    
+}
 
 
 
